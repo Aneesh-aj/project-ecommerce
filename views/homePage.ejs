@@ -1,106 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>collection</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" class="style">
-    <link rel="stylesheet" href="style.css" class="style">
-    <title>user product-managment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>collection</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" class="style">
+  <link rel="stylesheet" href="style.css" class="style">
+  <title>user product-managment</title>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg nav-height ">  <!--nav-height  -->
-        <div class="container-fluid ">
-          <div class=" nav-div1">
-           
-             <div class="ms-5">
-               <span class="">
-                 <a class="nav-link active nav-texts" aria-current="page" href="/home">Home</a>
-              </span>
-            </div>
+ 
+<!-- <nav class="navbar navbar-expand-lg nav-height box-shadows">
+  <div class="container-fluid">
+      <div class="nav-div1 ms-2">
+          <span class="">
+              <a class="nav-link active nav-texts" aria-current="page" href="/home">Home</a>
+          </span>
+      </div>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="navbar-toggler">
+          <span class="navbar-toggler-icon"></span>
+      </label>
+
+      <div class="navbar-collapse">
+          <div class="d-flex nav-div2">
+              <div class="span-div d-flex justify-content-center">
+                  <span><a class="nav-link nav-texts" href="#">Top</a></span>
+              </div>
+              <div class="span-div d-flex justify-content-center">
+                  <span><a class="nav-link nav-texts" href="/collection?gender=kids">Kids</a></span>
+              </div>
+              <div class="span-div d-flex justify-content-center">
+                  <span><a class="nav-link nav-texts" href="/collection?gender=men">Mens</a></span>
+              </div>
+              <div class="span-div d-flex justify-content-center">
+                  <span><a class="nav-link nav-texts" href="/collection?gender=women">Women</a></span>
+              </div>
+              <div class="span-div d-flex justify-content-center">
+                  <span><a class="nav-link nav-texts" href="/collection?collection=true">Collection</a></span>
+              </div>
           </div>
-         <div class=" d-flex  nav-div2 ">
-                 
-                  <div class=" span-div  d-flex  justify-content-center">
-                      <span><a class="nav-link nav-texts" href="#">Top</a></span>
-                  </div>
-                  <div class="span-div d-flex  justify-content-center ">
-                      <span><a class="nav-link nav-texts" href="/collection?gender=kids">Kids</a></span>
-                  </div>
-                  <div class="span-div d-flex  justify-content-center ">
-                       <span><a class="nav-link nav-texts" href="/collection?gender=men">Mens</a></span>
-                  </div>
-                  <div class=" span-div d-flex  justify-content-center ">
-                       <span><a class="nav-link nav-texts" href="/collection?gender=women">Women</a></span>
-                  </div>
-                  <div class="span-div d-flex justify-content-center ">
-                      <span><a class="nav-link nav-texts" href="/collection?collection=true">collection</a></span>
-                  </div>
+
+          <div class="d-flex nav-div3 justify-content-end">
+              <form class="d-flex search-1" role="search" action="/collection" method="get">
+                  <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search"
+                      name="searchvalue" value="">
+                  <button class="btn btn-outline-light" type="submit">
+                      <span class="d-flex align-text-top">Search</span>
+                  </button>
+              </form>
           </div>
-          <div class=" d-flex  nav-div3  justify-content-end ">
-            <form class="d-flex search-1" role="search" action="/collection" method="get">
-              <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search" name="searchvalue" vlaue="" >
-                   <button class="btn btn-outline-light d-flex flex-column justify-content-center" type="submit">
-                   <span class="d-flex align-text-topb">search</span>
-              </button>
-          </form>
-          
-           </div>
-         
-           <div class=" d-flex pe-4 nav-div4 justify-content-start">
-        
-                <div class="span-div d-flex justify-content-center ">
-                  <!-- <form action="/profile" method="post"> -->
-                    <a href="/profile">
-                      <div  class="selector-image" style=" background-image: url(profile-svgrepo-com\ \(1\).svg);">
+
+          <div class="d-flex pe-4  justify-content-start">
+              <div class="span-div d-flex justify-content-center">
+                  <a href="/profile">
+                      <div class="selector-image" style="background-image: url(profile-svgrepo-com\ \(1\).svg);"></div>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</nav> -->
+  <content>
+
+    <!-- <div class="container-fluid" style=" height: 32rem;" >
+              <img src="/wp2168338.jpg" style="width: 100%; height: 32rem;" >
+
+          </div>
+          -->
+    <!-- <div class="container-fluid white" style="height: 1rem;">
+             
+          </div> -->
+    <div class="banner-height">
+
+
+      <div id="carouselExampleAutoplaying" class="carousel slide banner-height" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/53wpIkbEsTrst.webp" class="d-block w-100 banner-height" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/276pIkbEsTF5w.webp" class="d-block w-100 banner-height" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="/f12f28f99b8bcba0441b67c5334bca1e.jpg" class="d-block banner-height w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="white ">
+      <div class=" d-flex bg-white justify-content-center">
+         <h1 class="latest-product-text p-2">Latest products</h1>
+       </div>
+      <div class="container pt-3">
+        <div class="row row-cols-4 row-cols-sm-4 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-4 g-3 ">
+          <% for(let i=0;i < product.length; i++) {%>
+            <div class="col mb-3">
+              <div class="card">
+                  <div class="card-body latest-product-card" style="background-image: url(/filename/<%=product[i].product_image[0]%>);aspect-ratio: 1;"></div>
+                  <div class="">
+                      <div class=" d-flex latest-product-subdiv ">
+                          <label class="latest-product-subtext"><%=product[i].product_name %></label>
                       </div>
-                    </a>
-                </div>
-           </div>
-         </div>
-       </nav>
-       <content>
-        <div class="container-fluid mb-0  " id="body-color">
-            <div class=" d-flex   profile-main" style="height: 700px;">
-                <div class="homepage-main ">             
-                    <div class="product-photo ">
-                         <div class="w-100 h-75 d-flex justify-content-center">
-                          <div class="image">
-                           
-                           </div>
-                           <div class="" style="width: 110px;height: 90px;background-image: url(heart.svg);">
-                                 
-                           </div>
-                         </div>
-                          <div  class="  w-100 bg-success ">
-     
-                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" d-flex   " style="height: 800px; padding-top: 0%;">
-              <div class="homepage-main ">             
-                  <div class="product-photo ">
-                       <div class="w-100 h-75 d-flex justify-content-center">
-                        <div class="image">
-                                
-                         </div>
-                         <div class="">
-                               <div >
-                                  
-                               </div>
-                         </div>
-                       </div>
-                        <div  class="  w-100 bg-success ">
-   
-                       </div>
+                      <div class="d-flex justify-content-center">
+                        <a href="/product?id=<%=product[i]._id%>" class="rounded-1 home-cardbuttonview home-card-text2">
+                          <label class="home-card-text2">view</label>
+        
+                          <svg class="svg-size2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
+                        </a>
+                      </div>
                   </div>
               </div>
           </div>
-        </div>
+          
+          
+          <%} %>
         
-    </content>
-     
+        </div>
+      </div>
+    </div>
+    <div class="white home-cardaling">
+      <div class="container pt-3">
+        <div class="row row-cols-3 row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3 g-3">
+          <div class="col mb-3">
+            <div class="card">
+              <div class="card-body home-card" style="background-image: url(/card1.jpeg);">
+                <label class="">Men</label>
+                <button class="btn home-cardbutton">
+                  <svg class="svg-size" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    style="fill: rgb(255, 255, 255);">
+                    <path
+                      d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                    </path>
+                  </svg>
+                  <label class="home-card-text">shop</label>
+
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-3">
+            <div class="card">
+              <div class="card-body home-card" style="background-image:url(/card2.jpeg);">
+                <button class="btn home-cardbutton">
+                  <svg class="svg-size" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    style="fill: rgb(255, 255, 255);">
+                    <path
+                      d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                    </path>
+                  </svg>
+                  <label class="home-card-text">shop</label>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-3">
+            <div class="card">
+              <div class="card-body home-card" style="background-image: url(/card3.jpeg);">
+                <button class="btn home-cardbutton">
+                  <svg class="svg-size" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    style="fill: rgb(255, 255, 255);">
+                    <path
+                      d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
+                    </path>
+                  </svg>
+                  <label class="home-card-text">shop</label>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="banner-2 bg-success " style="background-image: url(/maindiv2.avif);">
+    </div>
+    <div class="banner-2 bg-white">
+        
+    </div>
+
+  </content>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

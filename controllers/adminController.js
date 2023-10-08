@@ -8,6 +8,7 @@ const brandModel = require("../model/brandModel")
 const { query } = require("express");
 const watchtypeModel = require("../model/watchtypeModel");
 const orderModel = require("../model/orderModel")
+const couponModel = require("../model/couponModel")
 
 
 const adminpageView= (req,res)=>{
@@ -466,5 +467,46 @@ const cancelOrder = async (req,res)=>{
       }
 }
 
+const coupon = async (req,res)=>{
+   try{
 
-module.exports= {cancelOrder,updateStatus,adminorderDetails,orderpageview,userBlock,brandList,brandsAdding,watchtypeList,watchtypeEdit,categoryGet,watchtypeAdding,productAdding,productListing,adminpageView,adminLogout,productManagment,userManagment,addProduct,editProduct,editedProduct}
+
+      const coupon = await couponModel.find({})
+
+      res.render("coupon",{coupon})
+
+   }catch(error){
+         console.log(error)
+   }
+}
+
+
+const addingcoupon = async (req,res)=>{
+   try{
+       console.log("the body",req.body)   
+
+       const couponcode = req.body.coupon_code 
+       const coupondate = req.body.coupon_date
+       const couponvalue = req.body.coupon_value
+       const coupontype = req.body.coupon_type
+       const min = req.body.min
+       const max = req.body.max
+
+       const coupon = await couponModel.create({
+             coupon_code : couponcode,
+             expire_date:coupondate,
+             coupon_value :couponvalue,
+             coupon_type:coupontype,
+             min_amount:min,
+             max_amount:max
+       })
+     
+       console.log("its adding ",coupon)
+      res.redirect("/admin/coupon")
+
+   }catch(error){
+      console.log(error)
+   }
+}
+
+module.exports= {addingcoupon,coupon,cancelOrder,updateStatus,adminorderDetails,orderpageview,userBlock,brandList,brandsAdding,watchtypeList,watchtypeEdit,categoryGet,watchtypeAdding,productAdding,productListing,adminpageView,adminLogout,productManagment,userManagment,addProduct,editProduct,editedProduct}

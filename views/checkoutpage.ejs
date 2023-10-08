@@ -11,6 +11,12 @@
   <link rel="stylesheet" href="style.css" class="style">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
   <title>checkout</title>
 </head>
 
@@ -312,13 +318,48 @@
                       <% }%>
 
           </div>
-       
+
 
         </div>
-        <div class="checkoutt-div2 h-50 ">
-          <div class="rounded-1 white">
-            <div class="cart-priceDetails p-3">
-              <h4>PRICE DETAILS</h4>
+        <div class="checkoutt-div2 h-auto white ">
+          <div class="rounded-1  h-auto  white">
+            <div class="d-flex h-auto ">
+              <div class="cart-priceDetails p-3">
+                <h4>PRICE DETAILS</h4>
+              </div>
+              <div class="">
+
+                <button class="btn btn-primary me-2 mt-2" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                   coupons
+                </button>
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                  aria-labelledby="offcanvasExampleLabel">
+                  <div class="offcanvas-header">
+                    <h5 class="offcanvas-title heading" id="offcanvasExampleLabel">coupons</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <hr>
+                  <div class="offcanvas-body">
+                    <% for (let i = 0; i < coupon.length; i++) { %>
+                      <div class="border-2 mb-3 border-black m-1">
+                        <div class="border-1" style="width: 100%; height: 2.5rem; background-color: rgb(0, 0, 0);">
+                          <h2 class="heading text-light">Coupon <%= i + 1 %></h2>
+                        </div>
+                        <div>
+                          <p>Coupon code: <%= coupon[i].coupon_code %></p>
+                          <p>coupon worth : <%= coupon[i].coupon_value %></p>
+                          <p>min amont to apply coupon : <%=coupon[i].min_amount %></p>
+                          <button class="copy-button" onclick="copycoupon('<%=coupon[i].coupon_code %>')" >Copy Coupon Code</button>
+                        </div>
+                      </div>
+                    <% } %>
+                  
+                  </div>
+                </div>
+
+              </div>
             </div>
             <hr>
             <div class="cart-priceDetails  d-flex">
@@ -346,7 +387,7 @@
               <div class="cart-priceSub2 ">
                 <p>---</p>
               </div>
-            
+
             </div>
             <hr>
             <div class="cart-priceDetails  d-flex">
@@ -356,10 +397,20 @@
               <div class="cart-priceSub2 ">
                 <p id="displayedTotalPrice">
                   <%=totalprice.toFixed(2)%>
-                  <p>hii --<%=totalprice%> </p>
                 </p>
               </div>
-              <input  type="hidden" name="alltotal"  value="<%=totalprice%>">
+              <input type="hidden" name="alltotal" value="<%=totalprice%>">
+            </div>
+            <div class="cart-priceDetails  d-flex">
+              <div class="cart-priceSub">
+                  <input  name="coupon_apply" id="couponCodeInput" placeholder="apply any coupon code ">
+              </div>
+              <div class="cart-priceSub2 ">
+                <p id="displayedTotalPrice">
+                    <button class="btn btn-outline-warning" onclick="applycoupon()">apply</button>
+                </p>
+              </div>
+              <input type="hidden" name="alltotal" value="<%=totalprice%>">
             </div>
 
           </div>
@@ -383,8 +434,9 @@
               <div class="p-2">
                 <input type="checkbox" id="useWallet" name="useWallet">
               </div>
-         
-              <div  id="walletOption" class="p-2">Use wallet:&#8377 <%=user.wallet.balance %></div>
+
+              <div id="walletOption" class="p-2">Use wallet:&#8377 <%=user.wallet.balance %>
+              </div>
             </div>
             <div class="d-flex justify-content-center" id>
               <button id="placeOrderButton" class="btn btn-primary h-100 w-100 m-2">Place Order</button>
@@ -554,6 +606,64 @@
 
   <script>
 
+async function applycoupon() {
+  const couponCodeInput = document.getElementById('couponCodeInput');
+    const couponCode = couponCodeInput.value;
+    const useWalletCheckbox = document.getElementById('useWallet');
+    const displayedTotalPriceElement = document.getElementById('displayedTotalPrice');
+  const amount = displayedTotalPriceElement.innerText;
+
+ console.log("the amount",amount)
+     
+    if (useWalletCheckbox.checked) {
+  alert('remove the applied wallet');
+  return;
+}
+
+
+    if (!couponCode) {
+      alert('Please enter a coupon code');
+      return;
+    }
+
+    try {
+
+
+      const dataBody={
+           couponCode : couponCode,
+           amount:amount
+
+      }
+      fetch('/apply-coupon', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+           dataBody
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Coupon code application failed');
+        }
+
+        return response.json();
+      })
+      .then(result => {
+        const updatedTotalPrice = result.totalprice.toFixed(2);
+  displayedTotalPriceElement.innerText = updatedTotalPrice;
+      })
+      .catch(error => {
+        console.error('Error applying coupon code:', error);
+        alert('Error applying coupon code. Please try again.');
+      });    
+    } catch (error) {
+      console.error('Error applying coupon code:', error);
+      alert('Error applying coupon code. Please try again.');
+    }
+  }
+
 
 
     $(document).ready(function () {
@@ -578,6 +688,16 @@
       });
     });
 
+
+    function copycoupon(i) {
+            console.log(i)
+            navigator.clipboard.writeText(i);
+            const copyButton = document.getElementById('k');
+            copyButton.textContent = "Copied!";
+            setTimeout(() => {
+                copyButton.textContent = "Copy";
+            }, 5000);
+        };
 
     function quantityChanged(selectElement, index) {
 
@@ -664,6 +784,9 @@
     }
 
 
+    
+
+
 
 
     function deleteAddress(addressIndex, userId) {
@@ -695,124 +818,126 @@
           console.error('Error:', error);
         });
     }
-        
+
     document.addEventListener('DOMContentLoaded', function () {
-  const addressCheckboxes = document.querySelectorAll('.address-checkbox');
-  const paymentCheckboxes = document.querySelectorAll('input[name="paymentMethod"]');
-  const placeOrderButton = document.getElementById('placeOrderButton');
-  const useWalletCheckbox = document.getElementById('useWallet');
-  const onlinePaymentCheckbox = document.getElementById('onlinePayment');
-  const cashOnDeliveryCheckbox = document.getElementById('cashOnDelivery');
-  const walletOption = document.getElementById('walletOption');
-  const displayedTotalPriceElement = document.getElementById('displayedTotalPrice');
-  const totalpriceInput = document.querySelector('input[name="totalprice"]');
-  const walletBalance = parseFloat('<%= user.wallet.balance.toFixed(2) %>');
+      const addressCheckboxes = document.querySelectorAll('.address-checkbox');
+      const paymentCheckboxes = document.querySelectorAll('input[name="paymentMethod"]');
+      const placeOrderButton = document.getElementById('placeOrderButton');
+      const useWalletCheckbox = document.getElementById('useWallet');
+      const onlinePaymentCheckbox = document.getElementById('onlinePayment');
+      const cashOnDeliveryCheckbox = document.getElementById('cashOnDelivery');
+      const walletOption = document.getElementById('walletOption');
+      const displayedTotalPriceElement = document.getElementById('displayedTotalPrice');
+      const totalpriceInput = document.querySelector('input[name="totalprice"]');
+      const walletBalance = parseFloat('<%= user.wallet.balance.toFixed(2) %>');
 
-  useWalletCheckbox.style.display = 'none';
-  walletOption.style.display = 'none';
+      
 
-  addressCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener('change', function () {
-      addressCheckboxes.forEach(function (otherCheckbox) {
-        if (otherCheckbox !== checkbox) {
-          otherCheckbox.checked = false; // Uncheck other address checkboxes
+      useWalletCheckbox.style.display = 'none';
+      walletOption.style.display = 'none';
+
+      addressCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+          addressCheckboxes.forEach(function (otherCheckbox) {
+            if (otherCheckbox !== checkbox) {
+              otherCheckbox.checked = false; // Uncheck other address checkboxes
+            }
+          });
+        });
+      });
+
+      cashOnDeliveryCheckbox.addEventListener('change', function () {
+        if (cashOnDeliveryCheckbox.checked) {
+          useWalletCheckbox.checked = false; // Uncheck the "Use Wallet" checkbox when Cash on Delivery is selected
         }
       });
-    });
-  });
 
-  cashOnDeliveryCheckbox.addEventListener('change', function () {
-    if (cashOnDeliveryCheckbox.checked) {
-      useWalletCheckbox.checked = false; // Uncheck the "Use Wallet" checkbox when Cash on Delivery is selected
-    }
-  });
+      useWalletCheckbox.addEventListener('change', function () {
+        const totalprice = parseFloat('<%= totalprice.toFixed(2) %>');
 
-  useWalletCheckbox.addEventListener('change', function () {
-    const totalprice = parseFloat('<%= totalprice.toFixed(2) %>');
-
-    if (useWalletCheckbox.checked) {
-      const discountedPrice = totalprice - walletBalance;
-      displayedTotalPriceElement.innerText = discountedPrice.toFixed(2);
-      totalpriceInput.value = discountedPrice;
-    } else {
-      displayedTotalPriceElement.innerText = totalprice.toFixed(2);
-      totalpriceInput.value = totalprice;
-    }
-  });
-
-  placeOrderButton.addEventListener('click', function () {
-
-    console.log("entring to ---click")
-    const selectedAddress = document.querySelector('.address-checkbox:checked');
-    const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
-    const selectedproductId = document.querySelector('input[name="productId"]');
-    const totalpriceElement = document.getElementById('displayedTotalPrice');
-   
-  const totalprice = parseFloat(totalpriceElement.innerText);
-
-  const alltotal = document.querySelector('input[name="alltotal"]');
-  const alltotalvalue = alltotal.value
-  console.log("000000====", alltotal.value);
-
-
-
-    if (!selectedAddress) {
-      Swal.fire({
-        icon: "!",
-        title: "failed",
-        text: "add address"
+        if (useWalletCheckbox.checked) {
+          const discountedPrice = totalprice - walletBalance;
+          displayedTotalPriceElement.innerText = discountedPrice.toFixed(2);
+          totalpriceInput.value = discountedPrice;
+        } else {
+          displayedTotalPriceElement.innerText = totalprice.toFixed(2);
+          totalpriceInput.value = totalprice;
+        }
       });
-      return;
-    }
 
-    if (!selectedPaymentMethod) {
-      Swal.fire({
-        icon: "!",
-        title: "failed",
-        text: "select payment"
-      });
-      return;
-    }
+      placeOrderButton.addEventListener('click', function () {
 
-    const selectedAddressId = selectedAddress.getAttribute('data-address-id');
-    const selectedPaymentValue = selectedPaymentMethod.value;
-    const productId = selectedAddressId.value;
-    
-     
+        console.log("entring to ---click")
+        const selectedAddress = document.querySelector('.address-checkbox:checked');
+        const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+        const selectedproductId = document.querySelector('input[name="productId"]');
+        const totalpriceElement = document.getElementById('displayedTotalPrice');
 
-    let orderData = {
-      addressId: selectedAddressId,
-      paymentMethod: selectedPaymentValue,
-      productId: productId,
-      amount: totalprice,
-      alltotal:alltotalvalue
-    };
+        const totalprice = parseFloat(totalpriceElement.innerText);
+
+        const alltotal = document.querySelector('input[name="alltotal"]');
+        const alltotalvalue = alltotal.value
+        console.log("000000====", alltotal.value);
 
 
-    console.log("----",orderData)
 
-    fetch('/ordercheckout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(orderData),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        if (response.CODsuccess) {
-          placeorder(orderData);
-        } else if (response.success) {
-          var options = {
+        if (!selectedAddress) {
+          Swal.fire({
+            icon: "!",
+            title: "failed",
+            text: "add address"
+          });
+          return;
+        }
+
+        if (!selectedPaymentMethod) {
+          Swal.fire({
+            icon: "!",
+            title: "failed",
+            text: "select payment"
+          });
+          return;
+        }
+
+        const selectedAddressId = selectedAddress.getAttribute('data-address-id');
+        const selectedPaymentValue = selectedPaymentMethod.value;
+        const productId = selectedAddressId.value;
+
+
+
+        let orderData = {
+          addressId: selectedAddressId,
+          paymentMethod: selectedPaymentValue,
+          productId: productId,
+          amount: totalprice,
+          alltotal: alltotalvalue
+        };
+
+
+        console.log("----", orderData)
+
+        fetch('/ordercheckout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData),
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((response) => {
+            if (response.CODsuccess) {
+              placeorder(orderData);
+            } else if (response.success) {
+              var options = {
                 "key": "" + response.key_id + "",
                 "amount": "" + response.amount + "",
                 "currency": "INR",
                 "image": "/icons/Logo_short.png",
                 "order_id": "" + response.order_id + "",
                 "handler": function (response) {
-                    placeorder(orderData)
+                  placeorder(orderData)
                 },
                 "theme": {
                   "color": "#dc3545"
@@ -831,39 +956,39 @@
               };
 
 
-          const razorpay = new Razorpay(options);
-          razorpay.open();
-        } else {
-          console.error("it not working");
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  });
-
-  paymentCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener('change', function () {
-      paymentCheckboxes.forEach(function (otherCheckbox) {
-        if (otherCheckbox !== checkbox) {
-          otherCheckbox.checked = false;
-        }
+              const razorpay = new Razorpay(options);
+              razorpay.open();
+            } else {
+              console.error("it not working");
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       });
 
-      if (checkbox.value === 'online') {
-        useWalletCheckbox.style.display = 'block';
-        walletOption.style.display = 'block'; // Show the entire wallet option
-      } else {
-        useWalletCheckbox.style.display = 'none';
-        walletOption.style.display = 'none'; // Hide the entire wallet option
+      paymentCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+          paymentCheckboxes.forEach(function (otherCheckbox) {
+            if (otherCheckbox !== checkbox) {
+              otherCheckbox.checked = false;
+            }
+          });
 
-        // Reset displayed total amount when changing from online to cash on delivery
-        displayedTotalPriceElement.innerText = parseFloat('<%= totalprice.toFixed(2) %>');
-        totalpriceInput.value = parseFloat('<%= totalprice.toFixed(2) %>');
-      }
+          if (checkbox.value === 'online') {
+            useWalletCheckbox.style.display = 'block';
+            walletOption.style.display = 'block'; // Show the entire wallet option
+          } else {
+            useWalletCheckbox.style.display = 'none';
+            walletOption.style.display = 'none'; // Hide the entire wallet option
+
+            // Reset displayed total amount when changing from online to cash on delivery
+            displayedTotalPriceElement.innerText = parseFloat('<%= totalprice.toFixed(2) %>');
+            totalpriceInput.value = parseFloat('<%= totalprice.toFixed(2) %>');
+          }
+        });
+      });
     });
-  });
-});
 
     function placeorder(orderData) {
       console.log("----its coming here");

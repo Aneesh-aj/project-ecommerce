@@ -56,42 +56,42 @@
        
         <div class="container-fluid mb-0  " id="body-color">
             <div class=" d-flex   profile-main" style="height: auto;">
-                <div class="homepage-main4 d-flex ">             
-                    <div class="product-photo  ">
-                         <div class="w-100   d-flex  " style="height: 600px;" >
+                <div class=" row homepage-main4 d-flex ">             
+                    <div class="col-12 col-sm-12   col-md-12 col-lg-6 product-photo  ">
+                         <div class="w-100    d-flex  single-product-height "  >
                              <div class="w-25 ">
                                 <% for(let i=0; i < product.product_image.length-1 ; i++){ %>
                                          
-                                    <div class="bg-light mb-1 border" style="width: 75%;height: 90px;">
-                                        <img onclick="change_image(this)" class="image-strech" src="/filename/<%= product.product_image[i] %>" style="height: 100%; width: 100%;">
+                                    <div class="bg-danger mb-1 border sub-image ">
+                                        <img onclick="change_image(this)" class="sub-image" src="/filename/<%= product.product_image[i] %>" style="">
                                       </div>
                                <% }  %>
                              
                             </div>
                             <div class="image  img-zoom-container w-80 " style="height: auto;">
-                                <img class=" image-strech" src="/filename/<%= product.product_image[0]%>" id="myimage" style="height: 100%; width: 100%;">
+                                <img class=" image-strech" src="/filename/<%= product.product_image[0]%>" id="myimage" >
                                 <div class="img-zoom-lens"></div>
                              
                             </div>
                             <div id="myresult" class="img-zoom-result">  </div>
                          </div>
-                          <div  class="  w-100 d-flex justify-content-around align-items-center " style="height: 6rem;">
-                                 <a class="btn btn-warning " style="width: 45%;height: 50%;">Add to cart</a>
-                                 <a class="btn btn-danger " style="width: 45%; height: 50%;" href="/checkout?product_id=<%=product._id%>">Buy now</a>
+                          <div  class="  w-100 d-flex justify-content-around align-items-center mt-2 " style="height: 6rem;">
+                                 <a class="btn btn-warning product-button-cart " >Add to cart</a>
+                                 <a class="btn btn-danger product-button-buynow "  href="/checkout?product_id=<%=product._id%>">Buy now</a>
                          </div>
                     </div>
-                    <div class="product-show ms-4 bs" >
+                    <div class=" col-12 col-sm-12 col-md-12 col-lg-6 product-show " >
                      
                         
-                        <div class="p-3 ps-5">
+                        <div class="product-dete">
                             <h1 class="product-name"><%= product.product_name %>  </h1>   
                             <h4 class="product-name">watch - <%=product.gender%></h4>
                              <h3 class="special-price">special price</h3>
                             <h1 class="product-price">&#8377 <%= product.price %></h1>
 
                         </div>
-                        <h4 class="ps-5 product-subname">product details</h4>
-                        <div class="product-details-container ps-5">
+                        <h4 class="padding-start product-subname">product details</h4>
+                        <div class="product-details-container padding-start">
                             <div class="product-details-labels">
                                 <ul class="cate-text">
                                     <li>Display Type</li>

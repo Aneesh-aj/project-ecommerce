@@ -13,6 +13,7 @@ const { analytics } = require("googleapis/build/src/apis/analytics")
 
 const Razorpay = require("razorpay")
 const { render } = require("ejs")
+const couponModel = require("../model/couponModel")
 require('dotenv').config();
 
 const EMAIL = process.env.EMAIL;
@@ -40,12 +41,20 @@ const forgotpassword = (req, res) => {
     }
 }
 
-const homepageview = (req, res) => {
-    console.log("======================home page ===================")
-    console.log("the session ", req.session.email);
+const homepageview =async (req, res) => {
+    
+    try{
+        
+        const product = await productModel.find({}).limit(4)
+
+         console.log("the products",product)
+         
+        res.render("homePage",{product})
+    }catch(error){
+         console.log(error)
+    }
 
 
-    res.render("homePage")
 
 }
 
@@ -342,7 +351,7 @@ const showCollection = async (req, res) => {
         const searchvalue = req.query.searchvalue || '';
 
         let filterQuery = { list: true };
-        var message
+        var message;
 
         if (pr1 !== 0 || pr2 !== Infinity) {
             filterQuery.price = { $gte: pr1, $lte: pr2 };
@@ -351,22 +360,19 @@ const showCollection = async (req, res) => {
         if (gender !== '') {
             filterQuery.gender = gender;
         }
-        if (watchType !== '') {
 
+        if (watchType !== '') {
             if (watchType.length > 0) {
                 filterQuery.watch_type = new mongoose.Types.ObjectId(watchType);
-
             }
         }
 
         if (searchvalue !== '') {
             const regex = new RegExp(searchvalue, 'i');
-            filterQuery.$or = [
+            filterQuery.$and = [
                 { product_name: { $regex: regex } },
                 { brand: { $in: await brandModel.find({ brand_category: regex }, '_id') } }
             ];
-        } else {
-            message = 'No products found'
         }
 
         const database = await productModel.find(filterQuery).populate("watch_type").limit(8);
@@ -376,21 +382,16 @@ const showCollection = async (req, res) => {
         const slicedData = database.slice(skip, skip + 8);
 
         if (watchType.length != 0) {
-            var watch = await watchtypeModel.findOne({ _id: watchType }, { watch_type: 1 })
-
+            var watch = await watchtypeModel.findOne({ _id: watchType }, { watch_type: 1 });
         }
 
-        console.log("-----------------------database", database)
-        console.log("---------da--", database[0].watch_type)
-        console.log("watch type", database[0].watch_type.watch_type)
-        console.log("watchhh", watch)
-
-        res.render("productCollection", { database: slicedData, watchtype, watch, totalPages, currentPage: page, pr1, pr2, gender, watchType });
+        res.render("productCollection", { database: slicedData, watchtype, watch, totalPages, currentPage: page, pr1, pr2, gender, watchType, searchvalue, message });
     } catch (error) {
         console.error("Error in showCollection route:", error);
         res.status(500).render("errorPage");
     }
 };
+
 
 const wallet = async (req, res) => {
     try {
@@ -413,7 +414,6 @@ const productPageview = async (req, res) => {
         let product = await productModel.findById(id)
         let productimage = await productModel.findOne({ _id: id }, { product_image: 1 })
         if (product) {
-
             res.render("productPage", { product, productimage })
         } else {
             console.log(" nooooooooooooooooooooooooooooob")
@@ -797,7 +797,9 @@ const checkoutView = async (req, res) => {
 
 
         console.log("and the user id is ", user._id)
-        res.render("checkoutpage", { user, qnt, totalprice, address, singleproduct, singleproductid })
+
+        const coupon = await couponModel.find({})
+        res.render("checkoutpage", { user, qnt, coupon,totalprice, address, singleproduct, singleproductid })
 
     } catch (error) {
         console.log(error)
@@ -1523,5 +1525,34 @@ const ordercheckout = async (req, res) => {
 }
 
 
+const applycoupn = async (req,res)=>{
+    try{
+        const code = req.body.dataBody.couponCode;
+    const amount = req.body.dataBody.amount;
 
-module.exports = { returnOrder,wallet, ordercheckout, deletewishlist, addingtocart, wishlist, addtoWishlist, verificationPassword, otpverifyPassword, forgotpasswordpost, forgotpassword, cancelOrder, userOrderdetails, isuser, ordersPage, checkoutaddressEdit, placeorder, addressEdit, deleteAddress, newaddress, checkoutView, quantityUpdate, edituserDetalis, addAdress, removeincart, addToCart, cart, checkUserStatus, verificatioinResend, productPageview, showCollection, landing, homepageview, profileView, profilePost, loginView, loginPost, userLogout, singupView, signupPost, verficatiionPost, verification }
+
+        console.log("---code",code)
+        console.log("----",amount)
+        
+                const coupon = await couponModel.findOne({coupon_code:code})
+                console.log("its coupn",coupon.coupon_value)
+
+       if(coupon && coupon.coupon_value){
+         
+        const totalprice = parseFloat(amount) - parseFloat(coupon.coupon_value);
+         console.log("the total",totalprice)  
+      
+        res.json({totalprice})
+       }else{
+        console.log('Invalid coupon or no discount amount');
+        res.status(400).json({ error: 'Invalid coupon or no discount amount' });
+       }
+
+    }catch(error){
+        console.log(error)
+    }
+}
+
+
+
+module.exports = { applycoupn,returnOrder,wallet, ordercheckout, deletewishlist, addingtocart, wishlist, addtoWishlist, verificationPassword, otpverifyPassword, forgotpasswordpost, forgotpassword, cancelOrder, userOrderdetails, isuser, ordersPage, checkoutaddressEdit, placeorder, addressEdit, deleteAddress, newaddress, checkoutView, quantityUpdate, edituserDetalis, addAdress, removeincart, addToCart, cart, checkUserStatus, verificatioinResend, productPageview, showCollection, landing, homepageview, profileView, profilePost, loginView, loginPost, userLogout, singupView, signupPost, verficatiionPost, verification }

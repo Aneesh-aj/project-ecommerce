@@ -29,6 +29,7 @@ router.get("/orders",controller.orderpageview)
 router.get("/orders/orderdetails",controller.adminorderDetails)
 router.post("/update-order-status",controller.updateStatus)
 router.post("/cancel-order",controller.cancelOrder)
-
+router.get("/coupon",controller.coupon)
+router.post("/coupon",controller.addingcoupon)
 
 module.exports = router
