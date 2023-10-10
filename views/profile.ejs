@@ -15,76 +15,72 @@
   <link rel="stylesheet" href="style.css" class="style">
   <title>login</title>
 </head>
+<style>
+
+
+</style>
 
 <body>
-  <nav class="navbar navbar-expand-lg nav-height  "> <!--nav-height  -->
-    <div class="container-fluid ">
-      <div class=" nav-div1">
-
-        <div class="ms-5">
-          <span class="">
-            <a class="nav-link active  nav-texts " aria-current="page" href="/home">Home</a>
-          </span>
-        </div>
-      </div>
-      <div class=" d-flex  nav-div2 ">
-
-
-        <div class="span-div d-flex  justify-content-center ">
-          <span><a class="nav-link nav-texts" href="/collection?gender=kids">Kids</a></span>
-        </div>
-        <div class="span-div d-flex  justify-content-center ">
-          <span><a class="nav-link nav-texts" href="/collection?gender=men">Mens</a></span>
-        </div>
-        <div class=" span-div d-flex  justify-content-center ">
-          <span><a class="nav-link nav-texts" href="/collection?gender=women">Women</a></span>
-        </div>
-        <div class="span-div d-flex justify-content-center ">
-          <span><a class="nav-link nav-texts" href="/collection?collection=true">collection</a></span>
-        </div>
-      </div>
-      <div class=" d-flex  nav-div3  justify-content-end ">
-        <form class="d-flex search-1" role="search" action="/collection" method="get">
-          <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search"
-            name="searchvalue" vlaue="">
-          <button class="btn btn-outline-light d-flex flex-column justify-content-center" type="submit">
-            <span class="d-flex align-text-topb">search</span>
-          </button>
-        </form>
-
-      </div>
-
-      <div class=" d-flex pe-4 nav-div4 justify-content-start">
-
-        <div class="span-div d-flex justify-content-center ">
-
-          <a href="/cart">
-            <div class="selector-image" style="background-image: url('shopping-cart (1).png');">
-
+  <nav class="navbar navbar-expand-lg" style="height: 8rem;">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-5">
+                <li class="nav-item">
+                    <a class="nav-link active nav-texts" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-texts" href="/collection?gender=kids">Kids</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-texts" href="/collection?gender=men">Mens</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-texts" href="/collection?gender=women">Women</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-texts" href="/collection?collection=true">Collection</a>
+                </li>
+            </ul>
+            <form class="d-flex search-1" role="search" action="/collection" method="get">
+                <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search"
+                    name="searchvalue" value="">
+                <button class="btn btn-outline-light d-flex flex-column justify-content-center" type="submit">
+                    <span class="d-flex align-text-topb">Search</span>
+                </button>
+            </form>
+            <div class="d-flex pe-4 nav-div4 justify-content-start">
+                <a href="/cart" class="nav-link">
+                    <div class="selector-image" style="background-image: url('shopping-cart (1).png');"></div>
+                </a>
             </div>
-          </a>
         </div>
-      </div>
     </div>
-  </nav>
+</nav>
+
   <content>
 
     <div class="container-fluid d-flex justify-content-center   " id="body-color">
       <div class="container  container-lg container-fluid">
         <div class=" d-flex h-auto  profile-main justify-content-center">
           <div class="profile-div ">
-            <div class="profile-photo d-flex align-items-center ">
+            <div class="profile-photo  align-items-center d-lg-flex">
               <div class=" hii d-flex justify-content-center align-items-center">
                 <div class="profile-picture "
                   style="background-image: url(https://cdn-icons-png.flaticon.com/128/3001/3001764.png); background-repeat: no-repeat; background-size: cover;">
                 </div>
               </div>
               <div class=" hello d-flex align-items-center">
-                <span class="text-label">user</span>
+                <span class="text-label">
+                  <%=user.name %>
+                </span>
               </div>
             </div>
             <div class="profile-selection">
-              <div class="selector  d-flex align-items-center">
+              <div class="selector d-lg-flex  align-items-center">
                 <div class=" hii d-flex align-items-center justify-content-center">
                   <div class="selector-image"
                     style="background-image: url(https://cdn-icons-png.flaticon.com/128/8089/8089114.png); "></div>
@@ -94,18 +90,19 @@
                 </div>
               </div>
               <div class="line"></div>
-              <div class="selector  d-flex align-items-center">
+              <div class="selector  d-lg-flex align-items-center">
                 <div class=" hii  d-flex align-items-center justify-content-center">
                   <div class="selector-image"
                     style="background-image: url(https://cdn-icons-png.flaticon.com/128/4379/4379608.png); "></div>
                 </div>
                 <div class=" hello d-flex align-items-center">
-                  <span><a href="/wishlist" style="text-decoration: none; outline: none; color: black;">wishlist
+                  <span><a href="/wishlist" class="a-text "
+                      style="text-decoration: none; outline: none; color: black;">wishlist
                     </a></span>
                 </div>
               </div>
               <div class="line"></div>
-              <div class="selector  d-flex align-items-center align-items-center">
+              <div class="selector  d-lg-flex align-items-center align-items-center">
                 <div class="hii d-flex justify-content-center align-items-center">
                   <div class="selector-image bg-light"
                     style="background-image: url(https://cdn-icons-png.flaticon.com/128/2435/2435281.png); "></div>
@@ -115,14 +112,11 @@
                     </a></span>
                 </div>
               </div>
-           
+
               <div class="line"></div>
               <div class="d-flex align-content-end">
                 <div class="selector  d-flex align-items-center align-items-center">
-                  <div class="hii d-flex justify-content-center align-items-center">
-                    <div class="selector-image bg-light"
-                      style="background-image: url(https://cdn-icons-png.flaticon.com/128/2435/2435281.png); "></div>
-                  </div>
+
                   <div class="hello d-flex align-items-center">
                     <form class="" method="post" action="/logout">
                       <button type="submit" class="btn btn-primary  rounded-2">logout</button>
@@ -136,25 +130,32 @@
           <div class="profile-div3  w-75 ">
             <div class="h-auto w-100">
               <div class="col-lg-12 usr-details">
-                <div class="card ps-5 pb-3">
-                  <div class="bg-white d-flex  pe-5  pt-3 rounded-3 d-flex align-items-center">
-                    <h2 class="heading">Personal information</h2>
+                <div class="card  ps5pb3">
+                  <div class="profile-info-div1 d-flex rounded-3 ">
+                    <div class="w-75 ">
+                      <h2 class="heading m-0">Personal information</h2>
 
-                    <button type="button" class="btn btn-outline-primary h-50" data-bs-toggle="modal"
-                      data-bs-target="#myModal">
-                      Edit
-                    </button>
+                    </div>
+                    <div class=" d-flex justify-content-end">
+                      <button type="button" class="profile-edit-button" data-bs-toggle="modal"
+                        data-bs-target="#myModal">
+                        Edit
+                      </button>
+                      <div class="profile-oldbutton-div">
+                        <button type="button" class="profile-add-button  " data-bs-toggle="modal"
+                          data-bs-target="#addAddressModal">
+                          add Address
+                        </button>
+                      </div>
 
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                      data-bs-target="#addAddressModal">
-                      Add Address
-                    </button>
+
+                    </div>
 
                   </div>
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-3">
-                        <p class="mb-0">Name</p>
+                        <p class="mb-0     ">Name :</p>
                       </div>
                       <div class="col-sm-9">
                         <p class="text-muted mb-0">
@@ -165,10 +166,10 @@
                     <hr>
                     <div class="row">
                       <div class="col-sm-3">
-                        <p class="mb-0">second name</p>
+                        <p class="mb-0">second name :</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">
+                        <p class="sub-details-text mb-0">
                           <%= user.second_name %>
                         </p>
                       </div>
@@ -176,10 +177,10 @@
                     <hr>
                     <div class="row">
                       <div class="col-sm-3">
-                        <p class="mb-0">Email</p>
+                        <p class="mb-0">Email :</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">
+                        <p class="sub-details-text mb-0">
                           <%= user.email %>
                         </p>
                       </div>
@@ -187,10 +188,10 @@
                     <hr>
                     <div class="row">
                       <div class="col-sm-3">
-                        <p class="mb-0">Mobile</p>
+                        <p class="mb-0">Mobile :</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">
+                        <p class="sub-details-text mb-0">
                           <%= user.number %>
                         </p>
                       </div>
@@ -198,21 +199,27 @@
                     <hr>
                     <div class="row">
                       <div class="col-sm-3">
-                        <p class="mb-0">Gender</p>
+                        <p class="mb-0">Gender :</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">
+                        <p class="sub-details-text mb-0">
                           <%= user.gender %>
                         </p>
                       </div>
                     </div>
                   </div>
-                   
+
+                  <div class="profile-newbtn-div">
+                    <button type="button" class="profile-add-button  " data-bs-toggle="modal"
+                      data-bs-target="#addAddressModal">
+                      add Address
+                    </button>
+                  </div>
                 </div>
               </div>
 
             </div>
-            <div class="h-auto w-100 mt-2">
+            <div class="h-auto w-100 mt-2 box-shadows">
 
               <% for(let i=0; i < address.address.length;i++){ %>
 
@@ -234,15 +241,15 @@
                             <div class="bg-white d-flex  pe-5  pt-3 rounded-3 d-flex align-items-center">
                               <h2 class="heading"> Address</h2>
 
-                              <button type="button" class="btn btn-outline-primary h-50" data-bs-toggle="modal"
+                              <button type="button" class="address-edit-button" data-bs-toggle="modal"
                                 data-bs-target="#myModals<%=i%>">
                                 Edit
                               </button>
                               <!-- <button type="button" class="btn btn-outline-primary h-50" onclick="deleteAddress('<%= i %>')">
                                     delete
                             </button> -->
-                              <button class="btn btn-outline-primary "
-                                onclick="deleteAddress( '<%=i%>', '<%=userid._id %>')">Delete Address</button>
+                              <button class="profile-delete-button "
+                                onclick="deleteAddress( '<%=i%>', '<%=userid._id %>')">Delete </button>
 
                             </div>
                             <div class="card-body">

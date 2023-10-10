@@ -1,16 +1,51 @@
+
+
 .profile-div {
     width: 20%;
     height: 700px;
-
+    display: block;
+  /* background-color: #007bff; */
 }
 
+.profile-info-div1{
+    background-color: #FFF;
+    padding-top: 3rem;
 
-
+}
+.address-edit-button{
+    width: 4rem;
+    height: 2rem;
+    background-color: #d0d0d0;
+    border: 1px;
+    border-radius: 3px;
+    margin-left:1rem;
+    margin-right: 0.5rem;
+}
+.profile-delete-button{
+    width: 4rem;
+    height: 2rem;
+    background-color:#007bff;
+    color: white;
+    border: 1px;
+    border-radius: 3px;
+  
+    
+}
 .full-shadow {
     box-shadow: 0px 0px 10px rgba(238, 238, 238, 0.5);
 
 
 }
+.profile-edit-button{
+    width: 4rem;
+    height: 2.5rem;
+    background-color: #d0d0d0;
+    border: 1px;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.8rem;
+}
+
 
 .product-card:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -24,6 +59,9 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+.row-arrange{
+     margin-left: 5rem;
+ }
 
 .card-details {
     padding: 15px;
@@ -43,6 +81,7 @@
 .card-gender {
     font-size: 0.9rem;
     color: #666;
+    padding-left: 1rem;
 }
 
 .card-rating a {
@@ -161,7 +200,7 @@ th {
 }
 
 .usr-details {
-    box-shadow: 0px 0px 10px rgba(238, 238, 238, 0.5);
+    box-shadow: 0px 0px 5px rgba(93, 93, 93, 0.1);
 
     border-radius: 3px;
 }
@@ -203,7 +242,7 @@ th {
     width: 100%;
     height: 20%;
     background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.002);
+    box-shadow: 0px 0px 10px rgba(80, 80, 80, 0.1);
 }
 
 .price-g {
@@ -219,14 +258,19 @@ th {
     margin-top: 0.6rem;
     height: 75%;
     background-color: #FFF;
-    box-shadow: 0px 0px 10px rgba(238, 238, 238, 0.5);
+    box-shadow: 0px 0px 5px rgba(61, 61, 61, 0.2);
 
 }
 
 .box-shadows {
     box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5);
 }
-
+.card-watchtype {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    padding-left: 1rem;
+    color: #666;
+}
 .filter-selection {
     width: 100%;
     border-radius: 5px;
@@ -273,6 +317,7 @@ th {
 .hii {
     width: 40%;
     height: 75%;
+    /* background-color: orange; */
 }
 
 .hello {
@@ -288,6 +333,10 @@ th {
 .profile-picture {
     width: 60px;
     height: 60px;
+
+}
+
+.info-div{
 
 }
 
@@ -334,6 +383,11 @@ th {
 
     background-size: cover;
     background-position: center;
+}
+.ps5pb3{
+    padding-left: 5rem;
+    padding-bottom: 3rem;
+
 }
 
 .home-card {
@@ -500,10 +554,26 @@ header {
 .footer-color {
     background-color: #E4E4E4;
 }
+.singleaddtowishlist {
+    width: 48%;
 
+    height: 2rem;
+}
+.singleaddtocartButton {
+    width: 45%;
+
+
+    height: 2rem;
+}
 .search {
     width: 250PX;
 
+}
+.profile-details-head{
+    display: flex;
+    padding-right: 5rem;
+    padding-top: 2rem;
+    align-items: center;
 }
 
 .bt-class {
@@ -655,6 +725,9 @@ header {
     background-color: #FFF;
 
 }
+.sub-details-text{
+    color: grey;
+}
 
 
 
@@ -687,6 +760,7 @@ header {
     border-radius: 3px;
     margin-top: 3rem;
 }
+
 
 .special-price {
     /* padding-left: 1rem; */
@@ -751,6 +825,7 @@ header {
     /* background-color: #0171d3; */
 }
 
+
 .product-card {
 
     width: 23%;
@@ -763,9 +838,10 @@ header {
     border-radius: 5px;
     transition: transform 0.2s;
     /* margin: 0 10px 20px; */
-
-    flex-basis: 25%;
-    padding: 0px;
+    
+    flex-basis: 24.9999;
+    
+    padding-left: 0px;
     margin: 0px;
 
 }
@@ -955,18 +1031,21 @@ header {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 5px;
+    padding-left: 1rem;
 }
 
 .card-price {
     font-size: 1rem;
     color: #e53935;
     /* Red color for price */
+    padding-left: 1rem;
     margin-bottom: 5px;
 }
 
 .card-rating {
     font-size: 0.9rem;
     color: #388e3c;
+    padding: 1rem;
     /* Green color for rating */
 }
 
@@ -1125,6 +1204,11 @@ body {
     height: 300px;
     width: 100vw;
     overflow: hidden;
+}
+.normal-btn{
+    /* margin: 1rem; */
+    width: 3rem;
+    height: 3rem;
 }
 
 /* common for userHome brandPage singleProductPage */
@@ -1300,6 +1384,35 @@ footer {
         padding: 20px;
     }
 
+}
+
+@media  screen and (min-width:1200px) {
+    .filter-btn-div .normal-btn{
+         display: none;
+    }
+    .filter-btn-div2 .normal-btn{
+        display: inline-block;
+    
+        width: 4rem;
+        height: 2rem;
+        margin: 1rem;
+        border-radius: 5px;
+        background-color: #007bff;
+        border: none;
+    }
+    .profile-oldbutton-div .profile-add-button{
+        display: inline-block;
+        
+            width: 7rem;
+            height: 2.5rem;
+            background-color: #3567e3;
+            border: 1px;
+            border-radius: 3px;
+    
+    }
+    .profile-newbtn-div{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 880px) {
@@ -1581,6 +1694,7 @@ footer {
         position: sticky;
 
     }
+    
 
     .filtered-text {
         font-size: 1.2rem;
@@ -1668,8 +1782,159 @@ footer {
     .padding-start{
         padding-left: 0px;
     }
-    .gener-text{
+    .profile-photo {
+        background-color:#FFF;
+        margin: 0;
+        border-radius: 5px;
+        width: 100%;
+        height: 15%;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+    .hello {
+        width: 100%;
+        height: 20%;
+        display: flex;
+         justify-content: center;
+         margin-bottom: 1rem;
+    }
+    .hii {
+        width:100%;
+        /* height: 50%; */
+    }
+    .selector {
+        width: 100%;
+        height: 4rem;
+    }
+    .selector-image {
+        width: 25px;
+        height: 25px;
+        /* background-color: chartreuse; */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .ps5pb3{
+        padding-left: 0rem;
+        padding-bottom: 1rem;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+
+    }
+    .heading {
+        color: #000;
+        font-family: oswald;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: bold;
+
+    }
+    .profile-edit-button{
+        width: 3rem;
+        height: 2rem;
+        background-color: #d0d0d0;
+        border: 1px;
+        border-radius: 3px;
+        margin-bottom: 0.8rem;
+    }
+    .profile-add-button{
+        width: 75%;
+        height: 2rem;
+        background-color: #2da4ed;
+        border: 1px;
+        border-radius: 3px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        
         
     }
+    .profile-newbtn-div{
+        display: flex;
+        justify-content: center;
+        
+    }
+    .full-height{
+        width: 300rem;
+        background-color: purple;
+    }
+    .selector {
+        width: 100%;
+        height: 5rem;
+        box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.09);
 
-}
+    }
+    .profile-details-head{
+        
+        display: flex;
+        background-color: #b1bfcd;
+
+    }
+    .profile-info-div1{
+           background-color: #FFF;
+           padding-top: 1rem;
+           box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.5);
+
+    }
+    .profile-delete-button{
+        width: 3rem;
+        height: 2rem;
+        background-color:#007bff;
+        color: white;
+        border: 1px;
+        border-radius: 3px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        
+    }
+    .address-edit-button{
+        width: 3rem;
+        height: 2rem;
+        background-color: #d0d0d0;
+        border: 1px;
+        border-radius: 3px;
+        margin-left: 0.8rem;
+
+
+    }
+    .normal-btn{
+        
+        width:100%;
+        height: 3rem;
+    }
+    .filter-btn-div .normal-btn{
+        display: inline-block;
+    }
+    .filter-btn-div2 .normal-btn{
+        display: none;
+    }
+    .row-arrange{
+       
+       margin: 0.4rem; 
+    }
+    .profile-oldbutton-div .profile-add-button{
+     display: none;
+    }
+    .profile-div3 {
+        width: 100%;
+        height: auto;
+        margin-left: 0.3rem;
+        border-radius: 5px;
+    
+    }
+    .profile-selection {
+        width: 100%;
+        border-radius: 5px;
+        margin-top: 0.3rem;
+        height: 75%;
+        background-color: #FFF;
+        box-shadow: 0px 0px 10px rgba(238, 238, 238, 0.5);
+    
+    }
+    .profile-div {
+        width: 20%;
+        height: 700px;
+        display: none;
+      /* background-color: #007bff; */
+    }
+    
+    
+
+}        
