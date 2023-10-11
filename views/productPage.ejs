@@ -57,8 +57,8 @@
         <div class="container-fluid mb-0  " id="body-color">
             <div class=" d-flex   profile-main" style="height: auto;">
                 <div class=" row homepage-main4 d-flex ">             
-                    <div class="col-12 col-sm-12   col-md-12 col-lg-6 product-photo  ">
-                         <div class="w-100    d-flex  single-product-height  "  >
+                    <div class="col-12 col-sm-12   col-md-12 col-lg-6 product-photo ">
+                         <div class="w-100    d-flex  single-product-height "  >
                              <div class="w-25 ">
                                 <% for(let i=0; i < product.product_image.length-1 ; i++){ %>
                                          
@@ -75,7 +75,7 @@
                             </div>
                             <div id="myresult" class="img-zoom-result">  </div>
                          </div>
-                          <div  class="  w-100 d-flex justify-content-around align-items-center mt-2 " style="height: 6rem;">
+                          <div  class="  w-100  product-buy-wishbutton">
                                  <a class="btn btn-warning product-button-cart " >Add to cart</a>
                                  <a class="btn btn-danger product-button-buynow "  href="/checkout?product_id=<%=product._id%>">Buy now</a>
                          </div>
