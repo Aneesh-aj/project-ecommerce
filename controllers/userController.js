@@ -88,7 +88,7 @@ const profileView = async (req, res) => {
         console.log(" in the profile the user id", userid)
 
         console.log("the address ", address)
-        res.render("profile", { userid, address, user })
+        res.render("sidebar", { userid, address, user })
     } else {
 
         res.redirect("/login")

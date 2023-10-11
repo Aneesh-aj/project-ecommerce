@@ -16,8 +16,8 @@
 </head>
 
 <body>
- 
-<!-- <nav class="navbar navbar-expand-lg nav-height box-shadows">
+
+  <!-- <nav class="navbar navbar-expand-lg nav-height box-shadows">
   <div class="container-fluid">
       <div class="nav-div1 ms-2">
           <span class="">
@@ -108,32 +108,39 @@
     </div>
     <div class="white ">
       <div class=" d-flex bg-white justify-content-center">
-         <h1 class="latest-product-text p-2">Latest products</h1>
-       </div>
+        <h1 class="latest-product-text p-2">Latest products</h1>
+      </div>
       <div class="container pt-3">
         <div class="row row-cols-4 row-cols-sm-4 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-4 g-3 ">
           <% for(let i=0;i < product.length; i++) {%>
             <div class="col mb-3">
               <div class="card">
-                  <div class="card-body latest-product-card" style="background-image: url(/filename/<%=product[i].product_image[0]%>);aspect-ratio: 1;"></div>
-                  <div class="">
-                      <div class=" d-flex latest-product-subdiv ">
-                          <label class="latest-product-subtext"><%=product[i].product_name %></label>
-                      </div>
-                      <div class="d-flex justify-content-center">
-                        <a href="/product?id=<%=product[i]._id%>" class="rounded-1 home-cardbuttonview home-card-text2">
-                          <label class="home-card-text2">view</label>
-        
-                          <svg class="svg-size2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
-                        </a>
-                      </div>
+                <div class="card-body latest-product-card"
+                  style="background-image: url(/filename/<%=product[i].product_image[0]%>);aspect-ratio: 1;"></div>
+                <div class="">
+                  <div class=" d-flex latest-product-subdiv ">
+                    <label class="latest-product-subtext">
+                      <%=product[i].product_name %>
+                    </label>
                   </div>
+                  <div class="d-flex justify-content-center">
+                    <a href="/product?id=<%=product[i]._id%>" class="rounded-1 home-cardbuttonview home-card-text2">
+                      <label class="home-card-text2">view</label>
+
+                      <svg class="svg-size2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+                        <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z">
+                        </path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
               </div>
-          </div>
-          
-          
-          <%} %>
-        
+            </div>
+
+
+            <%} %>
+
         </div>
       </div>
     </div>
@@ -143,59 +150,72 @@
           <div class="col mb-3">
             <div class="card">
               <div class="card-body home-card" style="background-image: url(/card1.jpeg);">
-                <label class="">Men</label>
-                <button class="btn home-cardbutton">
+                <a class="btn home-cardbutton" href="/collection?gender=men">
                   <svg class="svg-size" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     style="fill: rgb(255, 255, 255);">
                     <path
                       d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
                     </path>
                   </svg>
-                  <label class="home-card-text">shop</label>
+                  <label class="home-card-text">Men</label>
 
-                </button>
+                </a>
               </div>
             </div>
           </div>
           <div class="col mb-3">
             <div class="card">
               <div class="card-body home-card" style="background-image:url(/card2.jpeg);">
-                <button class="btn home-cardbutton">
+                <a class="btn home-cardbutton" href="/collection?gender=women">
                   <svg class="svg-size" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     style="fill: rgb(255, 255, 255);">
                     <path
                       d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
                     </path>
                   </svg>
-                  <label class="home-card-text">shop</label>
-                </button>
+                  <label class="home-card-text">women</label>
+                </a>
               </div>
             </div>
           </div>
           <div class="col mb-3">
             <div class="card">
               <div class="card-body home-card" style="background-image: url(/card3.jpeg);">
-                <button class="btn home-cardbutton">
+                <a class="btn home-cardbutton" href="/collection?gender=kids">
                   <svg class="svg-size" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     style="fill: rgb(255, 255, 255);">
                     <path
                       d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z">
                     </path>
                   </svg>
-                  <label class="home-card-text">shop</label>
-                </button>
+                  <label class="home-card-text">kids</label>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="banner-2 bg-success " style="background-image: url(/maindiv2.avif);">
+    <div class="banner-2 bg-success " style="background-image: url(/maindiv2.avif); ">
+      <div class="w-100 h-100 d-flex align-items-end  blurred-background   "  >
+        <div class="mb-2">
+          <h1 class="front-text ">New arivals</h1>
+          <p class="home-para">  Experience the joy of exploration and find the perfect <br>timepiece for every moment, only a click away.</p>
+          <a class="btn home-cardbuttonCollection" href="/collection?gender=men">
+           
+            <label class="home-card-textcollection">collection</label>
+
+            <svg class="svg-size2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);">
+            <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z">
+            </path>
+          </svg>
+          </a>
+        </div>
+      </div>
     </div>
     <div class="banner-2 bg-white">
-        
     </div>
-
   </content>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
