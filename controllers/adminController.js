@@ -9,7 +9,7 @@ const { query } = require("express");
 const watchtypeModel = require("../model/watchtypeModel");
 const orderModel = require("../model/orderModel")
 const couponModel = require("../model/couponModel")
-
+const bannerupload = require("../model/banner-Model")
 
 const adminpageView= (req,res)=>{
 
@@ -19,7 +19,7 @@ const adminpageView= (req,res)=>{
 
         if(req.session.admin){
             console.log("cookie on admin page")
-            res.render("adminpage")
+            res.render("bannerpage")
         }else{
             res.redirect("/home")
         }

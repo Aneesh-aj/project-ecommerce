@@ -21,113 +21,16 @@
 </style>
 
 <body>
-  <nav class="navbar navbar-expand-lg" style="height: 8rem;">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-5">
-                <li class="nav-item">
-                    <a class="nav-link active nav-texts" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-texts" href="/collection?gender=kids">Kids</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-texts" href="/collection?gender=men">Mens</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-texts" href="/collection?gender=women">Women</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-texts" href="/collection?collection=true">Collection</a>
-                </li>
-            </ul>
-            <form class="d-flex search-1" role="search" action="/collection" method="get">
-                <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search"
-                    name="searchvalue" value="">
-                <button class="btn btn-outline-light d-flex flex-column justify-content-center" type="submit">
-                    <span class="d-flex align-text-topb">Search</span>
-                </button>
-            </form>
-            <div class="d-flex pe-4 nav-div4 justify-content-start">
-                <a href="/cart" class="nav-link">
-                    <div class="selector-image" style="background-image: url('shopping-cart (1).png');"></div>
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
-
+   <%- include ('navbar.ejs') %>
   <content>
 
-    <div class="container-fluid d-flex justify-content-center   " id="body-color">
-      <div class="container  container-lg container-fluid">
-        <div class=" d-flex h-auto  profile-main justify-content-center">
-          <div class="profile-div ">
-            <div class="profile-photo  align-items-center d-lg-flex">
-              <div class=" hii d-flex justify-content-center align-items-center">
-                <div class="profile-picture "
-                  style="background-image: url(https://cdn-icons-png.flaticon.com/128/3001/3001764.png); background-repeat: no-repeat; background-size: cover;">
-                </div>
-              </div>
-              <div class=" hello d-flex align-items-center">
-                <span class="text-label">
-                  <%=user.name %>
-                </span>
-              </div>
-            </div>
-            <div class="profile-selection">
-              <div class="selector d-lg-flex  align-items-center">
-                <div class=" hii d-flex align-items-center justify-content-center">
-                  <div class="selector-image"
-                    style="background-image: url(https://cdn-icons-png.flaticon.com/128/8089/8089114.png); "></div>
-                </div>
-                <div class="hello d-flex align-items-center">
-                  <span>profile</span>
-                </div>
-              </div>
-              <div class="line"></div>
-              <div class="selector  d-lg-flex align-items-center">
-                <div class=" hii  d-flex align-items-center justify-content-center">
-                  <div class="selector-image"
-                    style="background-image: url(https://cdn-icons-png.flaticon.com/128/4379/4379608.png); "></div>
-                </div>
-                <div class=" hello d-flex align-items-center">
-                  <span><a href="/wishlist" class="a-text "
-                      style="text-decoration: none; outline: none; color: black;">wishlist
-                    </a></span>
-                </div>
-              </div>
-              <div class="line"></div>
-              <div class="selector  d-lg-flex align-items-center align-items-center">
-                <div class="hii d-flex justify-content-center align-items-center">
-                  <div class="selector-image bg-light"
-                    style="background-image: url(https://cdn-icons-png.flaticon.com/128/2435/2435281.png); "></div>
-                </div>
-                <div class="hello d-flex align-items-center">
-                  <span><a href="/order" style="text-decoration: none; outline: none; color: black;">order
-                    </a></span>
-                </div>
-              </div>
+         
+  <div class="container-fluid d-flex justify-content-lg-center "  style="padding-top: 5rem; background-color: rgb(194, 201, 201);">
+    <div class="container-width ">  
+           <%- include('sidebar.ejs') %>
+           <section class="home-section ">
 
-              <div class="line"></div>
-              <div class="d-flex align-content-end">
-                <div class="selector  d-flex align-items-center align-items-center">
-
-                  <div class="hello d-flex align-items-center">
-                    <form class="" method="post" action="/logout">
-                      <button type="submit" class="btn btn-primary  rounded-2">logout</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div class="profile-div3  w-75 ">
+          <div class="profile-div3   ">
             <div class="h-auto w-100">
               <div class="col-lg-12 usr-details">
                 <div class="card  ps5pb3">
@@ -421,10 +324,10 @@
 
             </div>
           </div>
+          </section>
 
         </div>
-      </div>
-    </div>
+        </div>
 
     <!-- Button trigger modal -->
 

@@ -17,69 +17,11 @@
 
 <body>
 
-  <!-- <nav class="navbar navbar-expand-lg nav-height box-shadows">
-  <div class="container-fluid">
-      <div class="nav-div1 ms-2">
-          <span class="">
-              <a class="nav-link active nav-texts" aria-current="page" href="/home">Home</a>
-          </span>
-      </div>
+ 
+  <%- include('navbar.ejs') %>
+  <content >
 
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="navbar-toggler">
-          <span class="navbar-toggler-icon"></span>
-      </label>
-
-      <div class="navbar-collapse">
-          <div class="d-flex nav-div2">
-              <div class="span-div d-flex justify-content-center">
-                  <span><a class="nav-link nav-texts" href="#">Top</a></span>
-              </div>
-              <div class="span-div d-flex justify-content-center">
-                  <span><a class="nav-link nav-texts" href="/collection?gender=kids">Kids</a></span>
-              </div>
-              <div class="span-div d-flex justify-content-center">
-                  <span><a class="nav-link nav-texts" href="/collection?gender=men">Mens</a></span>
-              </div>
-              <div class="span-div d-flex justify-content-center">
-                  <span><a class="nav-link nav-texts" href="/collection?gender=women">Women</a></span>
-              </div>
-              <div class="span-div d-flex justify-content-center">
-                  <span><a class="nav-link nav-texts" href="/collection?collection=true">Collection</a></span>
-              </div>
-          </div>
-
-          <div class="d-flex nav-div3 justify-content-end">
-              <form class="d-flex search-1" role="search" action="/collection" method="get">
-                  <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search"
-                      name="searchvalue" value="">
-                  <button class="btn btn-outline-light" type="submit">
-                      <span class="d-flex align-text-top">Search</span>
-                  </button>
-              </form>
-          </div>
-
-          <div class="d-flex pe-4  justify-content-start">
-              <div class="span-div d-flex justify-content-center">
-                  <a href="/profile">
-                      <div class="selector-image" style="background-image: url(profile-svgrepo-com\ \(1\).svg);"></div>
-                  </a>
-              </div>
-          </div>
-      </div>
-  </div>
-</nav> -->
-  <content>
-
-    <!-- <div class="container-fluid" style=" height: 32rem;" >
-              <img src="/wp2168338.jpg" style="width: 100%; height: 32rem;" >
-
-          </div>
-          -->
-    <!-- <div class="container-fluid white" style="height: 1rem;">
-             
-          </div> -->
-    <div class="banner-height">
+    <div class="banner-height w-100" >
 
 
       <div id="carouselExampleAutoplaying" class="carousel slide banner-height" data-bs-ride="carousel">
@@ -94,21 +36,13 @@
             <img src="/f12f28f99b8bcba0441b67c5334bca1e.jpg" class="d-block banner-height w-100" alt="...">
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+      
+      
       </div>
     </div>
     <div class="white ">
       <div class=" d-flex bg-white justify-content-center">
-        <h1 class="latest-product-text p-2">Latest products</h1>
+        <h1 class="latest-product-text p-2  pt-lg-5">Latest products</h1>
       </div>
       <div class="container pt-3">
         <div class="row row-cols-4 row-cols-sm-4 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-4 g-3 ">
@@ -144,9 +78,9 @@
         </div>
       </div>
     </div>
-    <div class="white home-cardaling">
+    <div class="white home-cardaling w-100">
       <div class="container pt-3">
-        <div class="row row-cols-3 row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3 g-3">
+        <div class="row row-cols-3 row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3 g-lg-3 g-sm-2 g-md-2">
           <div class="col mb-3">
             <div class="card">
               <div class="card-body home-card" style="background-image: url(/card1.jpeg);">

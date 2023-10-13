@@ -13,45 +13,10 @@
 </head>
 
 <body>
-    <!--    
-    <nav class="navbar navbar-expand-lg nav-height sticky-top">   
-        <div class="container-fluid ">
-            <div class=" nav-div1">
-
-                <div class="ms-5">
-                    <span class="">
-                        <a class="nav-link active nav-texts" aria-current="page" href="/home">Home</a>
-                    </span>
-                </div>
-            </div>
-            <div class=" d-flex  nav-div2 ">
-
-               
-            </div>
-            <div class=" d-flex  nav-div3  justify-content-end ">
-                <form class="d-flex search-1" role="search" action="/collection" method="get">
-                    <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search" name="searchvalue" vlaue="" >
-                         <button class="btn btn-outline-light d-flex flex-column justify-content-center" type="submit">
-                         <span class="d-flex align-text-topb">search</span>
-                    </button>
-                </form>
-            </div>
-
-            <div class=" d-flex pe-4 nav-div4 justify-content-start">
-
-                <div class="span-div d-flex justify-content-center ">
-
-                    <a class="mt-3"  href="/cart">
-                          
-                            <img src="/cart-shopping-fast.svg" class="w-75 h-75">
-                      </a>
-                </div>
-            </div>
-        </div> 
-    </nav> -->
+     <%- include('navbar.ejs') %>
     <content>
   
-        <div class="container-fluid   " id="body-color">
+        <div class="container-fluid   " style="padding-top: 6rem;" id="body-color">
             <div class=" d-flex h-auto flex-column  flex-md-row">
                   <div class="filter-btn-div">
                     <button class="btn btn-primary normal-btn" type="button" data-bs-toggle="offcanvas"

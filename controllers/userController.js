@@ -88,7 +88,7 @@ const profileView = async (req, res) => {
         console.log(" in the profile the user id", userid)
 
         console.log("the address ", address)
-        res.render("sidebar", { userid, address, user })
+        res.render("profile", { userid, address, user })
     } else {
 
         res.redirect("/login")
@@ -1474,10 +1474,7 @@ const ordercheckout = async (req, res) => {
 
         console.log("--------th body", req.body)
 
-        const amount = req.body.amount * 100;
-        let randomNumber = Math.floor(Math.random() * 1000000); // Generate a random number
-        let paddedRandomNumber = randomNumber.toString().padStart(6, '0'); // Ensure it's 6 digits long
-        let receiptID = `RTN${paddedRandomNumber}`;
+     
 
         if (req.body.paymentMethod == "cod") {
             console.log("entering")
@@ -1487,6 +1484,10 @@ const ordercheckout = async (req, res) => {
 
 
         } else {
+            const amount = req.body.amount * 100;
+            let randomNumber = Math.floor(Math.random() * 1000000); // Generate a random number
+            let paddedRandomNumber = randomNumber.toString().padStart(6, '0'); // Ensure it's 6 digits long
+            let receiptID = `RTN${paddedRandomNumber}`;
             console.log("entering  so its online payment")
             const options = {
                 amount: amount,
