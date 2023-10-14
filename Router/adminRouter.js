@@ -2,9 +2,9 @@ const express = require("express")
 
 const router= express.Router()
 const uploadImages = require("../config/multer")
-
 const { render } = require("ejs")
 const controller = require("../controllers/adminController")
+const bannerupload = require("../config/banner")
 
 
 router.get("/", controller.adminpageView )
@@ -31,5 +31,8 @@ router.post("/update-order-status",controller.updateStatus)
 router.post("/cancel-order",controller.cancelOrder)
 router.get("/coupon",controller.coupon)
 router.post("/coupon",controller.addingcoupon)
+router.get("/banners",controller.bannerpageRendering)
+router.post("/banneradding",bannerupload.single('image'),controller.banneradding)
+router.post("/removeBanner",controller.removeBannerImage)
 
 module.exports = router

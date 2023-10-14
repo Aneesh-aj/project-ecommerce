@@ -23,6 +23,7 @@ app.use(session({
     resave:false,
     saveUninitialized:true,
 }))
+
 const cookieParser = require("cookie-parser");
 const upload = require("./config/multer");
 
@@ -37,6 +38,7 @@ app.use(express.urlencoded({extended:true}))
 // const { admin } = require("googleapis/build/src/apis/admin");
 app.use(cookieParser())
 app.use("/",require("./Router/router"))
+
 app.use("/admin", require("./Router/adminRouter"))
 
 

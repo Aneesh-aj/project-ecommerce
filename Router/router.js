@@ -30,7 +30,7 @@ router.get("/product",controller.checkUserStatus,controller.productPageview)
 router.get("/resend-otp",controller.checkUserStatus,controller.verificatioinResend)
 
 router.get("/cart",controller.checkUserStatus,controller.cart)
-
+ 
 router.post("/remove-from-cart",controller.checkUserStatus,controller.removeincart)
 
 router.post("/api/add-to-cart",controller.checkUserStatus,controller.addToCart)
