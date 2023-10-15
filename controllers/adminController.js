@@ -13,18 +13,69 @@ const bannerupload = require("../model/banner-Model");
 const { render } = require("ejs");
 const bannerModel = require("../model/banner-Model");
 
-const adminpageView = (req, res) => {
-
+const adminpageView =  async (req, res) => {
+ 
+  try{ 
   if (!req.session.admin) {
     res.redirect("/login")
   }
 
   if (req.session.admin) {
-    console.log("cookie on admin page")
-    res.render("adminpage")
+    console.log("coming here on the cart report");
+
+    const orderData = await orderModel.aggregate([
+      {
+        $group: {
+          _id: {
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" },
+          },
+          count: { $sum: 1 },
+          totalAmount: { $sum: "$totalamount" },
+        },
+      },
+      {
+        $sort: {
+          "_id.year": -1, // Sort in descending order by year
+          "_id.month": 1,
+        },
+      },
+    ]);
+
+    // Create an object to store all reports
+    const allReports = {};
+
+    // Create an array to store all years in descending order
+    const allYears = [];
+
+    // Populate the object and array with the counts and total amounts from the aggregation result
+    orderData.forEach(entry => {
+      const year = entry._id.year;
+      const month = entry._id.month;
+      const count = entry.count;
+      const totalAmount = entry.totalAmount;
+
+      if (!allReports[year]) {
+        allReports[year] = {
+          monthlyOrders: Array(12).fill(0),
+          monthlyAmounts: Array(12).fill(0),
+        };
+        allYears.push(year);
+      }
+
+      allReports[year].monthlyOrders[month - 1] = count;
+      allReports[year].monthlyAmounts[month - 1] = totalAmount;
+    });
+
+    console.log("the final ---------------------", allReports, allYears);
+    res.render("adminpage",{allReports,allYears})
   } else {
     res.redirect("/home")
   }
+
+     }catch(error){
+          console.log(error)
+     }
 
 }
 
@@ -595,7 +646,68 @@ const removeBannerImage = async (req, res) => {
 };
 
 
+const chartreport = async (req, res) => {
+  try {
+    console.log("coming here on the cart report");
+
+    const orderData = await orderModel.aggregate([
+      {
+        $group: {
+          _id: {
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" },
+          },
+          count: { $sum: 1 },
+          totalAmount: { $sum: "$totalamount" },
+        },
+      },
+      {
+        $sort: {
+          "_id.year": -1, // Sort in descending order by year
+          "_id.month": 1,
+        },
+      },
+    ]);
+
+    // Create an object to store all reports
+    const allReports = {};
+
+    // Create an array to store all years in descending order
+    const allYears = [];
+
+    // Populate the object and array with the counts and total amounts from the aggregation result
+    orderData.forEach(entry => {
+      const year = entry._id.year;
+      const month = entry._id.month;
+      const count = entry.count;
+      const totalAmount = entry.totalAmount;
+
+      if (!allReports[year]) {
+        allReports[year] = {
+          monthlyOrders: Array(12).fill(0),
+          monthlyAmounts: Array(12).fill(0),
+        };
+        allYears.push(year);
+      }
+
+      allReports[year].monthlyOrders[month - 1] = count;
+      allReports[year].monthlyAmounts[month - 1] = totalAmount;
+    });
+
+    console.log("the final ---------------------", allReports, allYears);
+    res.json({ allReports, allYears });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+module.exports = {
+  chartreport,
+};
 
 
 
-module.exports = { removeBannerImage,bannerpageRendering ,banneradding, addingcoupon, coupon, cancelOrder, updateStatus, adminorderDetails, orderpageview, userBlock, brandList, brandsAdding, watchtypeList, watchtypeEdit, categoryGet, watchtypeAdding, productAdding, productListing, adminpageView, adminLogout, productManagment, userManagment, addProduct, editProduct, editedProduct }
+module.exports = { chartreport,removeBannerImage,bannerpageRendering ,banneradding, addingcoupon, coupon, cancelOrder, updateStatus, adminorderDetails, orderpageview, userBlock, brandList, brandsAdding, watchtypeList, watchtypeEdit, categoryGet, watchtypeAdding, productAdding, productListing, adminpageView, adminLogout, productManagment, userManagment, addProduct, editProduct, editedProduct }
