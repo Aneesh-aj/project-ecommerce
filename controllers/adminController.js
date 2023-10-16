@@ -12,6 +12,7 @@ const couponModel = require("../model/couponModel")
 const bannerupload = require("../model/banner-Model");
 const { render } = require("ejs");
 const bannerModel = require("../model/banner-Model");
+const { assuredworkloads } = require("googleapis/build/src/apis/assuredworkloads");
 
 const adminpageView =  async (req, res) => {
  
@@ -42,13 +43,10 @@ const adminpageView =  async (req, res) => {
       },
     ]);
 
-    // Create an object to store all reports
     const allReports = {};
 
-    // Create an array to store all years in descending order
     const allYears = [];
 
-    // Populate the object and array with the counts and total amounts from the aggregation result
     orderData.forEach(entry => {
       const year = entry._id.year;
       const month = entry._id.month;
@@ -67,8 +65,37 @@ const adminpageView =  async (req, res) => {
       allReports[year].monthlyAmounts[month - 1] = totalAmount;
     });
 
+
+    const users = await usersModel.find({block:"false"})
+    const products = await productModel.find({})
+    const totalorders = await orderModel.find({})
+
+    const deliveredProductsAmount = await orderModel.aggregate([
+      {
+        $match: { status: "Delivered" },
+      },
+      {
+        $group: {
+          _id: null,
+          totalDeliveredAmount: { $sum: "$totalamount" },
+        },
+      },
+    ]);
+
+    const totalDeliveredAmount = deliveredProductsAmount.length
+      ? deliveredProductsAmount[0].totalDeliveredAmount
+      : 0;
+
+    console.log(
+      "the final ---------------------",
+      allReports,
+      allYears,
+      totalDeliveredAmount,
+    );
+
+
     console.log("the final ---------------------", allReports, allYears);
-    res.render("adminpage",{allReports,allYears})
+    res.render("adminpage",{allReports,allYears,users,totalorders,products,totalDeliveredAmount})
   } else {
     res.redirect("/home")
   }
@@ -645,7 +672,6 @@ const removeBannerImage = async (req, res) => {
   }
 };
 
-
 const chartreport = async (req, res) => {
   try {
     console.log("coming here on the cart report");
@@ -657,8 +683,11 @@ const chartreport = async (req, res) => {
             year: { $year: "$createdAt" },
             month: { $month: "$createdAt" },
           },
-          count: { $sum: 1 },
-          totalAmount: { $sum: "$totalamount" },
+          totalOrders: { $sum: 1 },
+          deliveredOrders: { $sum: { $cond: [{ $eq: ["$status", "Delivered"] }, 1, 0] } },
+          returnedOrders: { $sum: { $cond: [{ $eq: ["$status", "returned"] }, 1, 0] } },
+          totalAmount: { $sum: "$totalamount" }, // Summing total amounts for all orders
+          deliveredAmount: { $sum: { $cond: [{ $eq: ["$status", "Delivered"] }, "$totalamount", 0] } }, // Summing amounts for delivered orders
         },
       },
       {
@@ -669,33 +698,64 @@ const chartreport = async (req, res) => {
       },
     ]);
 
-    // Create an object to store all reports
+    const deliveredOrderAmountData = await orderModel.aggregate([
+      {
+        $match: {
+          status: "Delivered"
+        }
+      },
+      {
+        $group: {
+          _id: {
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" },
+          },
+          deliveredOrderAmount: { $sum: "$totalamount" },
+        },
+      },
+    ]);
+
+    // Create an object to store all reports, including monthly orders, amounts, and counts
     const allReports = {};
 
-    // Create an array to store all years in descending order
-    const allYears = [];
-
-    // Populate the object and array with the counts and total amounts from the aggregation result
+    // Populate the object with the counts, total amounts, and orders from the aggregation result
     orderData.forEach(entry => {
       const year = entry._id.year;
       const month = entry._id.month;
-      const count = entry.count;
-      const totalAmount = entry.totalAmount;
+      const totalOrders = entry.totalOrders;
+      const deliveredOrders = entry.deliveredOrders;
+      const returnedOrders = entry.returnedOrders;
+      const totalAmount = entry.deliveredAmount; // Use the deliveredAmount field
 
       if (!allReports[year]) {
         allReports[year] = {
           monthlyOrders: Array(12).fill(0),
           monthlyAmounts: Array(12).fill(0),
+          monthlyOrdersCount: Array(12).fill(0),
+          monthlyOrderReturned: Array(12).fill(0),
         };
-        allYears.push(year);
       }
 
-      allReports[year].monthlyOrders[month - 1] = count;
+      allReports[year].monthlyOrders[month - 1] = totalOrders;
       allReports[year].monthlyAmounts[month - 1] = totalAmount;
+      allReports[year].monthlyOrdersCount[month - 1] = deliveredOrders;
+      allReports[year].monthlyOrderReturned[month - 1] = returnedOrders;
     });
 
-    console.log("the final ---------------------", allReports, allYears);
-    res.json({ allReports, allYears });
+    // Update the total amount for each month based on deliveredOrderAmountData
+    deliveredOrderAmountData.forEach(deliveredEntry => {
+      const year = deliveredEntry._id.year;
+      const month = deliveredEntry._id.month;
+      const deliveredOrderAmount = deliveredEntry.deliveredOrderAmount;
+
+      if (allReports[year]) {
+        // Update the monthly amount for delivered orders
+        allReports[year].monthlyAmounts[month - 1] = deliveredOrderAmount;
+      }
+    });
+
+    console.log("the final ---------------------", allReports);
+    res.json({ allReports });
 
   } catch (error) {
     console.error(error);
@@ -704,10 +764,21 @@ const chartreport = async (req, res) => {
 };
 
 
-module.exports = {
-  chartreport,
-};
+const salesreport = async (req,res)=>{
+    try{
+
+
+      const order = await orderModel.find({})
+        
+      res.render("salesreport",{order})
+
+    }catch(error){
+
+    }
+}
 
 
 
-module.exports = { chartreport,removeBannerImage,bannerpageRendering ,banneradding, addingcoupon, coupon, cancelOrder, updateStatus, adminorderDetails, orderpageview, userBlock, brandList, brandsAdding, watchtypeList, watchtypeEdit, categoryGet, watchtypeAdding, productAdding, productListing, adminpageView, adminLogout, productManagment, userManagment, addProduct, editProduct, editedProduct }
+
+
+module.exports = {salesreport, chartreport,removeBannerImage,bannerpageRendering ,banneradding, addingcoupon, coupon, cancelOrder, updateStatus, adminorderDetails, orderpageview, userBlock, brandList, brandsAdding, watchtypeList, watchtypeEdit, categoryGet, watchtypeAdding, productAdding, productListing, adminpageView, adminLogout, productManagment, userManagment, addProduct, editProduct, editedProduct }

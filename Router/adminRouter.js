@@ -35,5 +35,6 @@ router.get("/banners",controller.bannerpageRendering)
 router.post("/banneradding",bannerupload.single('image'),controller.banneradding)
 router.post("/removeBanner",controller.removeBannerImage)
 router.post("/report",controller.chartreport)
+router.get("/salesreport",controller.salesreport)
 
 module.exports = router

@@ -24,7 +24,7 @@
 
 <body>
     <%- include('navbar.ejs') %>
-    <content>
+    <content class="nav-height">
         <div class="container-fluid   " id="body-color">
             <div class=" d-flex h-auto  profile-main">
                 <div class="profile-div ">
@@ -105,70 +105,9 @@
                     </div>
                 </div>
                 <div class="profile-div2  ">
-                    <div class="p-2">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            Add coupon
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="/admin/coupon" method="post">
-                                            <div class="mb-3">
-                                                <label for="recipient-name" class="col-form-label">coupon code:</label>
-                                                <input type="text" name="coupon_code" class="form-control"
-                                                    id="recipient-name" placeholder="">
-                                                <input type="hidden" name="userid">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">coupon type:</label>
-                                                <select name="coupon_type" class="form-control">
-                                                    <option value="flate">flate</option>
-                                                    <option value="percent">percent</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">coupon
-                                                    value/percent:</label>
-                                                <input type="" name="coupon_value" class="form-control" placeholder="">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="mb-3">min:</label>
-                                                <input type="" name="min" class="form-control" placeholder="">
-
-                                            </div>
-                                            <div class="mb-3">
-
-                                                <label class="mb-3">maxr:</label>
-                                                <input type="" name="max" class="form-control" placeholder="">
-
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="message-text" class="col-form-label">coupon
-                                                    value/percent:</label>
-                                                <input type="date" name="coupon_date" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="m-5">
+                      
+                    
 
 
 
@@ -176,39 +115,29 @@
                             <thead>
                                 <tr>
                                     <th>No:</th>
-                                    <th>coupon code</th>
-                                    <th>coupon value</th>
-                                    <th>coupon type</th>
-                                    <th>minimum</th>
-                                    <th>maximum</th>
-                                    <th>expire date</th>
-                                    <th>Action</th>
+                                    <th>order date</th>
+                                    <th>order-id</th>
+                                    <th>No.items</th>
+                                    <th>Amount</th>
+                                    <th>paymentMethod</th>
+                                    <th>status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for(let i=0; i< coupon.length;i++){ %>
+                                <% for(let i=0; i< order.length;i++){ %>
                                     <tr>
                                         <td>
                                             <%= i+1 %>
                                         </td>
-                                        <td>
-                                            <%=  coupon[i].coupon_code %>
-                                        </td>
-                                        <td><%= coupon[i].coupon_value %></td>
-                                        <td><%= coupon[i].coupon_type%></td>
-                                        <td><%= coupon[i].min_amount %></td>
-                                        <td><%=coupon[i].max_amount%></td>
-                                        <td>
-                                            <% if (coupon[i].expire_date instanceof Date && !isNaN(coupon[i].expire_date)) { %>
-                                              <%= coupon[i].expire_date.toLocaleString() %>
-                                            <% } else { %>
-                                              N/A
-                                            <% } %>
-                                          </td>
+                                        
+                                        <td><%= order[i].createdAt %></td>
+                                        <td><%= order[i]._id%></td>
+                                        <td><%= order[i].product.length %></td>
+                                        <td><%= order[i].totalamount%></td>
+                                        <td><%= order[i].paymentMethod %> </td>
                                           
                                         <td>
-                                            <button class="btn btn-primary"></button>
-                                            <button class="btn btn-warning"></button>
+                                            <%= order[i].status %>
                                         </td>
 
                                     </tr>
